@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  zabbix-agent:
+    image: zabbix/zabbix-agent:latest
+    container_name: zabbix-agent
+    restart: always
+    hostname: RIONORTE
+
+    environment:
+      - ZBX_SERVER_HOST=IP_DO_SEU_SERVIDOR_CENTRAL
+      - ZBX_HOSTNAME=RIONORTE
+      - ZBX_LISTENPORT=10050
+
+    ports:
+      - "10050:10050"
+
+    networks:
+      - zabbix-net
+
+networks:
+  zabbix-net:
+    driver: bridge
